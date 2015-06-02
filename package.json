@@ -1,0 +1,28 @@
+{
+  "name": "tester-app",
+  "version": "0.0.1",
+  "description": "咕噜 检测师 客户端",
+  "main": "index.js",
+  "scripts": {
+    "prestart": "npm install",
+    "start": "cordova build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/dmccer/tester-app.git"
+  },
+  "keywords": [
+    "咕噜",
+    "检测师",
+    "客户端"
+  ],
+  "author": "Kane",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/dmccer/tester-app/issues"
+  },
+  "homepage": "https://github.com/dmccer/tester-app",
+  "dependencies": {
+    "shelljs": "^0.5.0"
+  }
+}
