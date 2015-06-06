@@ -15,14 +15,16 @@ var gz_name = 'www.tar.gz';
 var appjs_path = './www/js/app.js';
 var alpha = /[a-z]+[0-9]*\.ifdiu\.com/g;
 var local = /o\.dp\:[0-9]{2,5}/g;
-var prd = 't.guluabc.com';
+var prd = 't.ifdiu.com';
 
 before_build();
 
 function before_build() {
   console.info('正在下载静态包' + owner +  '/' + projname);
   var www_tar_gz_url = '"http://d.ifdiu.com/f2e/alpha/' + projname + '?secret=yunhua@926&owner=' + owner + '&version=' + version + '"';
-  var curl_tar_gz = shell.exec(['curl', www_tar_gz_url, '>', gz_name].join(' '));
+  var curl_cmd = ['curl', www_tar_gz_url, '>', gz_name].join(' ');
+  console.log(curl_cmd);
+  var curl_tar_gz = shell.exec(curl_cmd);
   if (curl_tar_gz.code !== 0) {
     console.error('下载静态包' + www_tar_gz_url + '失败');
     console.error('错误信息:\n' + curl_tar_gz.output);
