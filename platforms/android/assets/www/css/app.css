@@ -7443,6 +7443,11 @@ button.toast-close-button {
   }
 }
 
+html,
+body {
+  height: 100%;
+  font-size: 16px;
+}
 .field {
   float: left;
   margin-right: 1em;
@@ -7465,6 +7470,19 @@ button.toast-close-button {
 }
 .dl-inline span b {
   color: #000000;
+}
+input[type="text"] {
+  text-transform: uppercase;
+}
+.page {
+  width: 100%;
+  height: 100%;
+}
+.sec-container {
+  height: 100%;
+}
+.sec-body {
+  padding-top: 20px;
 }
 .list-car .car-info {
   height: 2em;
@@ -7514,15 +7532,9 @@ button.toast-close-button {
   text-align: center;
   border: 1px solid #f2f2f2;
 }
-.credential-img-list .pic-container {
-  width: 100%;
-  min-height: 80px;
+.image-with-field {
   padding-top: 10px;
   padding-bottom: 10px;
-}
-.credential-img-list .pic-container img {
-  width: 100%;
-  height: 100%;
 }
 .test-item-list .panel .panel-body {
   padding: 0;
@@ -7536,21 +7548,56 @@ button.toast-close-button {
   border-left: none;
   border-right: none;
 }
-.input-report-nav {
-  position: fixed;
-  left: -60px;
-  top: 0;
-  z-index: 100;
+.test-item-list .panel .panel-body .list-group .bg-grey {
+  background-color: #f2f2f2;
+}
+.test-item-list .panel .panel-body .list-group .bg-danger {
+  background-color: #f2dede;
+}
+.input-report-container {
+  position: relative;
+  width: 100%;
   height: 100%;
+  display: table;
+  table-layout: fixed;
+  overflow: hidden;
+}
+.input-report-nav,
+.input-report-body {
+  display: table-cell;
+  border-collapse: collapse;
+  vertical-align: top;
+}
+/* 检测导航 */
+.input-report-nav {
+  position: relative;
+  width: 120px;
+  height: 100%;
+  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  padding-top: 15px;
   background-color: rgba(0, 0, 0, 0.8);
-  padding-top: 30px;
-  -webkit-transition: left 0.3s ease;
-  -moz-transition: left 0.3s ease;
-  -o-transition: left 0.3s ease;
-  transition: left 0.3s ease;
+  text-align: right;
+  overflow: hidden;
+  -webkit-transition: width 0.3s ease;
+  -moz-transition: width 0.3s ease;
+  -o-transition: width 0.3s ease;
+  transition: width 0.3s ease;
+}
+.input-report-nav li {
+  width: 100%;
+  height: 64px;
+  line-height: 64px;
+  overflow: hidden;
 }
 .input-report-nav li a {
+  display: block;
   color: #ffffff;
+  font-size: 18px;
+  padding-right: 15px;
+  padding-left: 0;
+  padding-bottom: 0;
+  padding-top: 0;
 }
 .input-report-nav li a:hover {
   color: #ff9900;
@@ -7559,8 +7606,12 @@ button.toast-close-button {
   color: #ff9900;
   background-color: #eeeeee;
 }
-.input-report-nav.open {
-  left: 0;
+.input-report-nav.closenav {
+  width: 0px;
+}
+.input-report-body {
+  padding-left: 10px;
+  padding-right: 10px;
 }
 .input-report-header {
   margin-bottom: 20px;
@@ -7568,24 +7619,91 @@ button.toast-close-button {
 .input-report-header .test-step {
   margin-top: 7px;
   cursor: pointer;
+  font-size: 1.5em;
 }
 .input-detail-container > div {
   padding-left: 0;
   padding-right: 0;
 }
-.input-detail-container .take-photo {
-  padding-right: 15px;
-}
-.input-detail-container .take-photo img {
-  width: 100%;
-  height: 100%;
-}
-.input-detail-container .input-detail-item {
-  padding-top: 15px;
-  padding-bottom: 15px;
-  padding-left: 15px;
-  background-color: #f2f2f2;
-}
 .input-detail-container .input-detail-item .form-group:last-child {
   margin-bottom: 0;
+}
+.input-detail-container .input-detail-item .form-group > label {
+  display: block;
+  padding: 5px 10px;
+  background-color: #f2f2f2;
+}
+.input-detail-container .input-detail-item .form-group > .radio {
+  padding-left: 10px;
+  padding-right: 10px;
+}
+.input-group-type {
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+/* 顶部导航 */
+.navbar {
+  margin-bottom: 0;
+}
+/* 登录框 */
+.login-panel {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -90%);
+  -moz-transform: translate(-50%, -90%);
+  -ms-transform: translate(-50%, -90%);
+  -o-transform: translate(-50%, -90%);
+  transform: translate(-50%, -90%);
+}
+.login-panel h2 {
+  margin-top: 0;
+  margin-bottom: 30px;
+}
+/* 拍照 */
+.pic-item {
+  text-align: center;
+}
+.pic-container {
+  width: 100%;
+  min-height: 80px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  text-align: center;
+  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+}
+.pic-container img {
+  width: auto;
+  height: 130px;
+}
+/* 占位图片 */
+.img-holder {
+  background-image: url('../img/img-holder.png');
+  background-position: center center;
+  background-repeat: no-repeat;
+}
+/* 检测 accordition */
+.input-report-body .panel-heading {
+  padding: 0;
+}
+.input-report-body .panel-heading .panel-title a {
+  display: block;
+  padding: 10px 15px;
+  text-decoration: none;
+}
+/* 单选拍照弹框 */
+.radio-with-take-photo {
+  margin-bottom: 15px;
+  padding: 10px 15px;
+}
+.radio-with-take-photo p {
+  margin-bottom: 0;
+}
+.radio-with-take-photo .radio-inline {
+  padding-top: 0;
+}
+/* 单选拍照 */
+.radio-item .radio-inline {
+  padding-left: 50px;
 }

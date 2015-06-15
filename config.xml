@@ -14,7 +14,7 @@
     <splash src="screen.png" />
 
     <preference name="Fullscreen" value="false" />
-    <preference name="Orientation" value="portrait" />
+    <preference name="Orientation" value="landscape" />
     <preference name="DisallowOverscroll" value="false"/>
     <preference name="HideKeyboardFormAccessoryBar" value="true"/>
     <preference name="android-windowSoftInputMode" value="adjustResize" />

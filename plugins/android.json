@@ -17,10 +17,6 @@
                             "count": 1
                         },
                         {
-                            "xml": "<feature name=\"Camera\"><param name=\"android-package\" value=\"org.apache.cordova.camera.CameraLauncher\" /></feature>",
-                            "count": 1
-                        },
-                        {
                             "xml": "<feature name=\"File\"><param name=\"android-package\" value=\"org.apache.cordova.file.FileUtils\" /><param name=\"onload\" value=\"true\" /></feature>",
                             "count": 1
                         },
@@ -30,6 +26,10 @@
                         },
                         {
                             "xml": "<feature name=\"SplashScreen\"><param name=\"android-package\" value=\"org.apache.cordova.splashscreen.SplashScreen\" /><param name=\"onload\" value=\"true\" /></feature>",
+                            "count": 1
+                        },
+                        {
+                            "xml": "<feature name=\"Camera\"><param name=\"android-package\" value=\"com.wezka.nativecamera.NativeCameraLauncher\" /></feature>",
                             "count": 1
                         }
                     ]
@@ -53,6 +53,20 @@
                         {
                             "xml": "<uses-permission android:name=\"android.permission.WRITE_EXTERNAL_STORAGE\" />",
                             "count": 3
+                        },
+                        {
+                            "xml": "<uses-permission android:name=\"android.permission.CAMERA\" />",
+                            "count": 1
+                        },
+                        {
+                            "xml": "<uses-feature android:name=\"android.hardware.camera.autofocus\" android:required=\"false\" />",
+                            "count": 1
+                        }
+                    ],
+                    "/manifest/application": [
+                        {
+                            "xml": "<activity android:label=\"nativecameraplugin\" android:name=\"com.wezka.nativecamera.CameraActivity\" android:screenOrientation=\"portrait\" android:theme=\"@android:style/Theme.NoTitleBar.Fullscreen\"></activity>",
+                            "count": 1
                         }
                     ]
                 }
@@ -69,9 +83,6 @@
         "org.apache.cordova.geolocation": {
             "PACKAGE_NAME": "com.guluauto.tester"
         },
-        "org.apache.cordova.camera": {
-            "PACKAGE_NAME": "com.guluauto.tester"
-        },
         "org.apache.cordova.file": {
             "PACKAGE_NAME": "com.guluauto.tester"
         },
@@ -82,6 +93,9 @@
             "PACKAGE_NAME": "com.guluauto.tester"
         },
         "org.apache.cordova.console": {
+            "PACKAGE_NAME": "com.guluauto.tester"
+        },
+        "com.wezka.nativecamera": {
             "PACKAGE_NAME": "com.guluauto.tester"
         }
     },
