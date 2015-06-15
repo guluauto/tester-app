@@ -216,6 +216,13 @@ module.exports = [
         "clobbers": [
             "CameraPopoverHandle"
         ]
+    },
+    {
+        "file": "plugins/es.keensoft.fullscreenimage/www/fullscreenimage.js",
+        "id": "es.keensoft.fullscreenimage.FullScreenImage",
+        "clobbers": [
+            "window.FullScreenImage"
+        ]
     }
 ];
 module.exports.metadata = 
@@ -228,7 +235,8 @@ module.exports.metadata =
     "org.apache.cordova.file-transfer": "0.5.0",
     "org.apache.cordova.splashscreen": "1.0.0",
     "org.apache.cordova.console": "0.2.13",
-    "com.wezka.nativecamera": "0.1.2"
+    "com.wezka.nativecamera": "0.1.2",
+    "es.keensoft.fullscreenimage": "1.0.0"
 }
 // BOTTOM OF METADATA
 });

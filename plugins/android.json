@@ -52,7 +52,7 @@
                         },
                         {
                             "xml": "<uses-permission android:name=\"android.permission.WRITE_EXTERNAL_STORAGE\" />",
-                            "count": 3
+                            "count": 4
                         },
                         {
                             "xml": "<uses-permission android:name=\"android.permission.CAMERA\" />",
@@ -66,6 +66,16 @@
                     "/manifest/application": [
                         {
                             "xml": "<activity android:label=\"nativecameraplugin\" android:name=\"com.wezka.nativecamera.CameraActivity\" android:screenOrientation=\"portrait\" android:theme=\"@android:style/Theme.NoTitleBar.Fullscreen\"></activity>",
+                            "count": 1
+                        }
+                    ]
+                }
+            },
+            "config.xml": {
+                "parents": {
+                    "/*": [
+                        {
+                            "xml": "<feature name=\"FullScreenImage\"><param name=\"android-package\" value=\"es.keensoft.fullscreenimage.FullScreenImage\" /></feature>",
                             "count": 1
                         }
                     ]
@@ -96,6 +106,9 @@
             "PACKAGE_NAME": "com.guluauto.tester"
         },
         "com.wezka.nativecamera": {
+            "PACKAGE_NAME": "com.guluauto.tester"
+        },
+        "es.keensoft.fullscreenimage": {
             "PACKAGE_NAME": "com.guluauto.tester"
         }
     },

@@ -53,5 +53,12 @@
             "url": "https://github.com/shaithana/cordova-plugin-wezka-nativecamera.git",
             "subdir": "."
         }
+    },
+    "es.keensoft.fullscreenimage": {
+        "source": {
+            "type": "git",
+            "url": "https://github.com/keensoft/FullScreenImage-Cordova-Plugin.git",
+            "subdir": "."
+        }
     }
 }
