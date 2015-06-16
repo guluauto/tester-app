@@ -1,0 +1,16 @@
+<component name="libraryTable">
+  <library name="gen">
+    <CLASSES />
+    <JAVADOC />
+    <SOURCES>
+      <root url="file://$PROJECT_DIR$/../../../../extra/cordova-android/framework/gen" />
+      <root url="file://$PROJECT_DIR$/../../../../extra/cordova-android/framework/src" />
+      <root url="file://$PROJECT_DIR$/../../../../extra/cordova-android/test/androidTest/src" />
+      <root url="file://$PROJECT_DIR$/../../../../extra/cordova-android/test/gen" />
+      <root url="file://$PROJECT_DIR$/../../../../extra/cordova-android/test/src" />
+    </SOURCES>
+    <excluded>
+      <root url="file://$PROJECT_DIR$/../../../../extra/cordova-android/framework/src/org" />
+    </excluded>
+  </library>
+</component>
