@@ -1,6 +1,7 @@
 node_modules/
 www/
 .idea/
+tester.apk
 
 # Built application files
 *.apk
