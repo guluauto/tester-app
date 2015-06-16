@@ -1,5 +1,7 @@
 node_modules/
 www/
+.idea/
+
 # Built application files
 *.apk
 *.ap_
