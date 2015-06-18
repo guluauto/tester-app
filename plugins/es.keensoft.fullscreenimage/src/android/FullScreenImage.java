@@ -15,26 +15,20 @@ import java.util.Arrays;
 
 import android.annotation.SuppressLint;
 
-import netscape.javascript.JSException;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.json.JSONException;
-
 
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Environment;
 import android.util.Log;
 import android.util.Base64;
-import android.*;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.webkit.MimeTypeMap;
 
 import org.apache.cordova.CallbackContext;
 import org.apache.cordova.CordovaPlugin;
 import org.apache.cordova.LOG;
-
 
 @SuppressLint("DefaultLocale")
 public class FullScreenImage extends CordovaPlugin {
@@ -66,7 +60,7 @@ public class FullScreenImage extends CordovaPlugin {
         this.args = args;
 
         if (Arrays.asList(actions).indexOf(action) != -1) {
-            cordova.getThreadPool().execute(new ShowHandler(this, action));
+            cordova.getActivity().runOnUiThread(new ShowHandler(this, action));
             return true;
         }
 
@@ -136,37 +130,13 @@ public class FullScreenImage extends CordovaPlugin {
         String url = getJSONProperty(json, "url");
         String extension = MimeTypeMap.getFileExtensionFromUrl(url);
 
-        InputStream fis = null;
-        OutputStream fos = null;
-
         LOG.d(LOG_TAG, "In showImageURL function: " + url + ", extension: " + extension);
 
-        try {
-            File f = new File(getTempDirectoryPath(), "output." + extension);
-            f.createNewFile();
-            fos = new FileOutputStream(f);
-            fis = new FileInputStream(FileHelper.stripFileProtocol(url));
-
-            LOG.d(LOG_TAG, "Created fos and fis");
-
-            byte buf[] = new byte[1024];
-            int len;
-
-            while ((len = fis.read(buf)) > 0) {
-                fos.write(buf, 0, len);
-            }
-
-            fos.close();
-            fis.close();
-
-            Uri imageUrl = Uri.fromFile(f);
-            Intent intent = new Intent(Intent.ACTION_VIEW);
-            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-            intent.setDataAndType(imageUrl, MimeTypeMap.getSingleton().getMimeTypeFromExtension(extension));
-            cordova.getActivity().startActivity(intent);
-        } catch (IOException e) {
-            LOG.d(LOG_TAG, "FullScreenImagePlugin", "Could not create file: " + e.toString());
-        }
+        Uri imageUrl = Uri.parse(url);
+        Intent intent = new Intent(Intent.ACTION_VIEW);
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        intent.setDataAndType(imageUrl, MimeTypeMap.getSingleton().getMimeTypeFromExtension(extension));
+        cordova.getActivity().startActivity(intent);
     }
 
 
@@ -177,12 +147,10 @@ public class FullScreenImage extends CordovaPlugin {
      * @param name   image Name to show on intent view
      */
     public void showImageBase64(JSONArray args) throws JSONException {
-        LOG.d(LOG_TAG, "===== call showImageURL");
-
         JSONObject json = args.getJSONObject(0);
 
         String base64Image = getJSONProperty(json, "base64");
-        String name = getJSONProperty(json, "name");
+//        String name = getJSONProperty(json, "name");
         String extension = getJSONProperty(json, "type");
         File pPath = Environment.getExternalStorageDirectory();
         if (!pPath.exists()) {
@@ -190,7 +158,6 @@ public class FullScreenImage extends CordovaPlugin {
         }
 
         try {
-
             byte[] imageAsBytes = Base64.decode(base64Image, Base64.DEFAULT);
 
             File filePath = new File(pPath, "output." + extension);

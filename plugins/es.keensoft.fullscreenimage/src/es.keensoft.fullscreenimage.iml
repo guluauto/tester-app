@@ -7,6 +7,21 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="library" name="gen" level="project" />
+    <orderEntry type="module-library" exported="">
+      <library>
+        <CLASSES>
+          <root url="file://$MODULE_DIR$/../../../../../extra/cordova-android" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES>
+          <root url="file://$MODULE_DIR$/../../../../../extra/cordova-android/test/gen" />
+          <root url="file://$MODULE_DIR$/../../../../../extra/cordova-android/test/src" />
+          <root url="file://$MODULE_DIR$/../../../../../extra/cordova-android/test/androidTest/src" />
+          <root url="file://$MODULE_DIR$/../../../../../extra/cordova-android/framework/gen" />
+          <root url="file://$MODULE_DIR$/../../../../../extra/cordova-android/framework/src" />
+        </SOURCES>
+      </library>
+    </orderEntry>
   </component>
 </module>
+

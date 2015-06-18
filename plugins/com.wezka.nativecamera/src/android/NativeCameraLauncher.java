@@ -26,12 +26,12 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.util.Calendar;
 
-import org.apache.cordova.ExifHelper;
 import org.apache.cordova.CallbackContext;
 import org.apache.cordova.CordovaInterface;
 import org.apache.cordova.CordovaPlugin;
 import org.apache.cordova.LOG;
 import org.apache.cordova.PluginResult;
+import org.apache.cordova.ExifHelper;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -79,6 +79,7 @@ public class NativeCameraLauncher extends CordovaPlugin {
 	}
 
 	void failPicture(String reason) {
+		Log.e(LOG_TAG, reason);
 		callbackContext.sendPluginResult(new PluginResult(PluginResult.Status.ERROR, reason));
 	}
 
@@ -115,13 +116,15 @@ public class NativeCameraLauncher extends CordovaPlugin {
 		this.photo = createCaptureFile();
 		this.imageUri = Uri.fromFile(photo);
 		intent.putExtra(MediaStore.EXTRA_OUTPUT, this.imageUri);
+
 		this.cordova.startActivityForResult((CordovaPlugin) this, intent, 1);
 	}
 
 	private File createCaptureFile() {
-		File oldFile = new File(getTempDirectoryPath(this.cordova.getActivity().getApplicationContext()), "Pic-" + this.date + ".jpg");
-		if(oldFile.exists())
-			oldFile.delete();
+//		File oldFile = new File(getTempDirectoryPath(this.cordova.getActivity().getApplicationContext()), "Pic-" + this.date + ".jpg");
+//		if(oldFile.exists()) {
+//			oldFile.delete();
+//		}
 		
 		Calendar c = Calendar.getInstance();
 	    this.date = "" + c.get(Calendar.DAY_OF_MONTH)
@@ -150,14 +153,20 @@ public class NativeCameraLauncher extends CordovaPlugin {
 
 				// Read in bitmap of captured image
 				Bitmap bitmap;
-				try {
-					bitmap = android.provider.MediaStore.Images.Media
-							.getBitmap(this.cordova.getActivity().getContentResolver(), imageUri);
-				} catch (FileNotFoundException e) {
+
+				if (this.photo.exists()) {
+					final BitmapFactory.Options options = new BitmapFactory.Options();
+					options.inSampleSize = 2;
+
+					bitmap = BitmapFactory.decodeFile(this.photo.getAbsolutePath(), options);
+				} else if(intent != null) {
 					Uri uri = intent.getData();
+
 					android.content.ContentResolver resolver = this.cordova.getActivity().getContentResolver();
-					bitmap = android.graphics.BitmapFactory
-							.decodeStream(resolver.openInputStream(uri));
+					bitmap = BitmapFactory.decodeStream(resolver.openInputStream(uri));
+				} else {
+					this.failPicture("Intent is null");
+					return;
 				}
 
 				// If bitmap cannot be decoded, this may return null

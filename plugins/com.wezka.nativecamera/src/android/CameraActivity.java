@@ -307,6 +307,7 @@ public class CameraActivity extends Activity implements SensorEventListener {
                     MediaStore.EXTRA_OUTPUT);
             File pictureFile = new File(fileUri.getPath());
             try {
+                Log.i(TAG, "output image: " + pictureFile.getAbsolutePath());
                 FileOutputStream fos = new FileOutputStream(pictureFile);
                 fos.write(data);
                 fos.close();
