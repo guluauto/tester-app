@@ -3,6 +3,7 @@ node_modules/
 www/
 !plugins/**/www/
 platforms/android/assets/www/
+www.tar.gz
 
 .idea/
 tester.apk
