@@ -5,6 +5,6 @@ mv hooks/before_build hooks/before_build_bak
 cp -rf ../demigod-tester/dist/* ./www
 grep -rl "o.dp:3000" ./www | xargs sed -i '' 's/o.dp:3000/t.ifdiu.com/g'
 cordova build android --debug
-cordova run android --debug
 mv hooks/before_build_bak hooks/before_build
+cordova run android --debug
 exit
