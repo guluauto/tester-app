@@ -8,7 +8,7 @@ var shell = require('shelljs');
 // 静态包信息
 var projname = 'demigod-tester';
 var owner = 'f2e';
-var version = '0.0.0';
+var version = '0.0.1';
 
 var gz_name = 'www.tar.gz';
 
@@ -21,7 +21,7 @@ before_build();
 
 function before_build() {
   console.info('正在下载静态包' + owner +  '/' + projname);
-  var www_tar_gz_url = '"http://d.ifdiu.com/f2e/alpha/' + projname + '?secret=yunhua@926&owner=' + owner + '&version=' + version + '"';
+  var www_tar_gz_url = '"http://d.guluabc.com/f2e/alpha/' + projname + '?secret=yunhua@926&owner=' + owner + '&version=' + version + '"';
   var curl_cmd = ['curl', www_tar_gz_url, '>', gz_name].join(' ');
   console.log(curl_cmd);
   var curl_tar_gz = shell.exec(curl_cmd);
