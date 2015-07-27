@@ -8,6 +8,7 @@
       Gulu Team
     </author>
     <content src="index.html" />
+    <!--<content src="cdvtests/index.html" />-->
     <access origin="*" />
 
     <icon src="icon.png" />

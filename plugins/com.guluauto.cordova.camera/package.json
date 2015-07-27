@@ -1,0 +1,27 @@
+{
+  "name": "gulucdv-plugin-camera",
+  "version": "0.0.1",
+  "description": "自定义照片选择和拍照",
+  "main": "index.js",
+  "directories": {
+    "test": "tests"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/guluauto/gulucdv-plugin-camera.git"
+  },
+  "keywords": [
+    "cordova",
+    "camera",
+    "plugin"
+  ],
+  "author": "Kane",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/guluauto/gulucdv-plugin-camera/issues"
+  },
+  "homepage": "https://github.com/guluauto/gulucdv-plugin-camera#readme"
+}

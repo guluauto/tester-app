@@ -9,10 +9,6 @@
                 "parents": {
                     "/*": [
                         {
-                            "xml": "<feature name=\"Device\"><param name=\"android-package\" value=\"org.apache.cordova.device.Device\" /></feature>",
-                            "count": 1
-                        },
-                        {
                             "xml": "<feature name=\"NetworkStatus\"><param name=\"android-package\" value=\"org.apache.cordova.networkinformation.NetworkManager\" /></feature>",
                             "count": 1
                         },
@@ -29,7 +25,11 @@
                             "count": 1
                         },
                         {
-                            "xml": "<feature name=\"Camera\"><param name=\"android-package\" value=\"com.wezka.nativecamera.NativeCameraLauncher\" /></feature>",
+                            "xml": "<feature name=\"Device\"><param name=\"android-package\" value=\"org.apache.cordova.device.Device\" /></feature>",
+                            "count": 1
+                        },
+                        {
+                            "xml": "<feature name=\"Camera\"><param name=\"android-package\" value=\"com.guluauto.cordova.camera.NativeCameraLauncher\" /></feature>",
                             "count": 1
                         }
                     ]
@@ -65,7 +65,7 @@
                     ],
                     "/manifest/application": [
                         {
-                            "xml": "<activity android:label=\"nativecameraplugin\" android:name=\"com.wezka.nativecamera.CameraActivity\" android:screenOrientation=\"portrait\" android:theme=\"@android:style/Theme.NoTitleBar.Fullscreen\"></activity>",
+                            "xml": "<activity android:label=\"nativecameraplugin\" android:name=\"com.guluauto.cordova.camera.CameraActivity\" android:screenOrientation=\"portrait\" android:theme=\"@android:style/Theme.NoTitleBar.Fullscreen\"></activity>",
                             "count": 1
                         }
                     ]
@@ -84,9 +84,6 @@
         }
     },
     "installed_plugins": {
-        "org.apache.cordova.device": {
-            "PACKAGE_NAME": "com.guluauto.tester"
-        },
         "org.apache.cordova.network-information": {
             "PACKAGE_NAME": "com.guluauto.tester"
         },
@@ -105,10 +102,16 @@
         "org.apache.cordova.console": {
             "PACKAGE_NAME": "com.guluauto.tester"
         },
-        "com.wezka.nativecamera": {
+        "es.keensoft.fullscreenimage": {
             "PACKAGE_NAME": "com.guluauto.tester"
         },
-        "es.keensoft.fullscreenimage": {
+        "cordova-plugin-test-framework": {
+            "PACKAGE_NAME": "com.guluauto.tester"
+        },
+        "org.apache.cordova.device": {
+            "PACKAGE_NAME": "com.guluauto.tester"
+        },
+        "com.guluauto.cordova.camera": {
             "PACKAGE_NAME": "com.guluauto.tester"
         }
     },

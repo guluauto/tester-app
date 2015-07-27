@@ -50,7 +50,7 @@
     "com.wezka.nativecamera": {
         "source": {
             "type": "git",
-            "url": "https://github.com/shaithana/cordova-plugin-wezka-nativecamera.git",
+            "url": "https://github.com/guluauto/gulucdv-plugin-camera.git",
             "subdir": "."
         }
     },
@@ -58,6 +58,20 @@
         "source": {
             "type": "git",
             "url": "https://github.com/keensoft/FullScreenImage-Cordova-Plugin.git",
+            "subdir": "."
+        }
+    },
+    "cordova-plugin-test-framework": {
+        "source": {
+            "type": "git",
+            "url": "https://github.com/apache/cordova-plugin-test-framework.git",
+            "subdir": "."
+        }
+    },
+    "com.guluauto.cordova.camera": {
+        "source": {
+            "type": "git",
+            "url": "https://github.com/guluauto/gulucdv-plugin-camera.git",
             "subdir": "."
         }
     }
