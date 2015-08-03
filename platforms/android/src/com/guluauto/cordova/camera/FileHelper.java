@@ -64,37 +64,48 @@ public class FileHelper {
 
     @SuppressLint("NewApi")
     public static String getRealPathFromURI_API19(Context context, Uri uri) {
-        String filePath = "";
+        Log.d(LOG_TAG, "======= uri scheme: " + uri.getScheme());
+        Log.d(LOG_TAG, "======= uri string: " + uri.toString());
+        Log.d(LOG_TAG, "======= uri authority: " + uri.getAuthority());
 
         if ("file".equalsIgnoreCase(uri.getScheme())) {
             return uri.getPath();
-        }
+        } else if ("com.android.providers.media.documents".equals(uri.getAuthority())) {
+            String filePath = "";
 
-        try {
-            String wholeID = DocumentsContract.getDocumentId(uri);
+            try {
+                String wholeID = DocumentsContract.getDocumentId(uri);
 
-            // Split at colon, use second item in the array
-            String id = wholeID.indexOf(":") > -1 ? wholeID.split(":")[1] : wholeID.indexOf(";") > -1 ? wholeID
-                    .split(";")[1] : wholeID;
+                // Split at colon, use second item in the array
+                String id = wholeID.indexOf(":") > -1 ? wholeID.split(":")[1] : wholeID.indexOf(";") > -1 ? wholeID
+                        .split(";")[1] : wholeID;
 
-            String[] column = { MediaStore.Images.Media.DATA };
+                String[] column = { MediaStore.Images.Media.DATA };
 
-            // where id is equal to
-            String sel = MediaStore.Images.Media._ID + "=?";
+                // where id is equal to
+                String sel = MediaStore.Images.Media._ID + "=?";
 
-            Cursor cursor = context.getContentResolver().query(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, column,
-                    sel, new String[] { id }, null);
+                Cursor cursor = context.getContentResolver().query(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, column,
+                        sel, new String[] { id }, null);
 
-            int columnIndex = cursor.getColumnIndex(column[0]);
+                int columnIndex = cursor.getColumnIndex(column[0]);
 
-            if (cursor.moveToFirst()) {
-                filePath = cursor.getString(columnIndex);
+                if (cursor.moveToFirst()) {
+                    filePath = cursor.getString(columnIndex);
+                }
+                cursor.close();
+            } catch (Exception e) {
+                filePath = "";
+
+                Log.d(LOG_TAG, "======= catch: " + e.toString());
             }
-            cursor.close();
-        } catch (Exception e) {
-            filePath = "";
+
+            return filePath;
+        } else if ("content".equalsIgnoreCase(uri.getScheme())) {
+            return getDataColumn(context, uri, null, null);
         }
-        return filePath;
+
+        return null;
     }
 
     @SuppressLint("NewApi")
@@ -185,6 +196,39 @@ public class FileHelper {
             uriString = uriString.substring(7);
         }
         return uriString;
+    }
+
+    /**
+     * Get the value of the data column for this Uri. This is useful for
+     * MediaStore Uris, and other file-based ContentProviders.
+     *
+     * @param context The context.
+     * @param uri The Uri to query.
+     * @param selection (Optional) Filter used in the query.
+     * @param selectionArgs (Optional) Selection arguments used in the query.
+     * @return The value of the _data column, which is typically a file path.
+     */
+    public static String getDataColumn(Context context, Uri uri, String selection,
+                                       String[] selectionArgs) {
+
+        Cursor cursor = null;
+        final String column = "_data";
+        final String[] projection = {
+                column
+        };
+
+        try {
+            cursor = context.getContentResolver().query(uri, projection, selection, selectionArgs,
+                    null);
+            if (cursor != null && cursor.moveToFirst()) {
+                final int column_index = cursor.getColumnIndexOrThrow(column);
+                return cursor.getString(column_index);
+            }
+        } finally {
+            if (cursor != null)
+                cursor.close();
+        }
+        return null;
     }
 
     public static String getMimeTypeForExtension(String path) {
