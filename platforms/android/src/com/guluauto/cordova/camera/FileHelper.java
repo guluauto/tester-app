@@ -8,6 +8,7 @@ import android.net.Uri;
 import android.os.Build;
 import android.provider.DocumentsContract;
 import android.provider.MediaStore;
+import android.util.Log;
 import android.webkit.MimeTypeMap;
 
 import org.apache.cordova.CordovaInterface;
@@ -16,6 +17,7 @@ import org.apache.cordova.LOG;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.lang.String;
 import java.util.Locale;
 
 public class FileHelper {
@@ -63,6 +65,11 @@ public class FileHelper {
     @SuppressLint("NewApi")
     public static String getRealPathFromURI_API19(Context context, Uri uri) {
         String filePath = "";
+
+        if ("file".equalsIgnoreCase(uri.getScheme())) {
+            return uri.getPath();
+        }
+
         try {
             String wholeID = DocumentsContract.getDocumentId(uri);
 

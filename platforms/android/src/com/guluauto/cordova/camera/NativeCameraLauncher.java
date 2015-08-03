@@ -244,16 +244,18 @@ public class NativeCameraLauncher extends CordovaPlugin {
         }
         int rotate = 0;
 
+        String picPath = "file://" + FileHelper.getRealPath(uri, this.cordova);
+
         // If you ask for video or all media type you will automatically get back a file URI
         // and there will be no attempt to resize any returned data
         if (this.mediaType != PICTURE) {
-            this.callbackContext.success(getRealPathFromUri(this.cordova.getActivity(), uri));
+            this.callbackContext.success(picPath);
         } else {
             // This is a special case to just return the path as no scaling,
             // rotating, nor compressing needs to be done
             if (this.targetHeight == -1 && this.targetWidth == -1 &&
                     (destType == FILE_URI || destType == NATIVE_URI)) {
-                this.callbackContext.success(getRealPathFromUri(this.cordova.getActivity(), uri));
+                this.callbackContext.success(picPath);
             } else {
                 String uriString = uri.toString();
                 // Get the path to the image. Makes loading so much easier.
@@ -309,7 +311,7 @@ public class NativeCameraLauncher extends CordovaPlugin {
                             this.failPicture("Error retrieving image.");
                         }
                     } else {
-                        this.callbackContext.success(getRealPathFromUri(this.cordova.getActivity(), uri));
+                        this.callbackContext.success(picPath);
                     }
                 }
                 if (bitmap != null) {
@@ -677,20 +679,4 @@ public class NativeCameraLauncher extends CordovaPlugin {
 
         return cache.getAbsolutePath();
     }
-
-    public String getRealPathFromUri(Context context, Uri contentUri) {
-        Cursor cursor = null;
-        try {
-            String[] proj = {MediaStore.Images.Media.DATA};
-            cursor = context.getContentResolver().query(contentUri, proj, null, null, null);
-            int column_index = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATA);
-            cursor.moveToFirst();
-            return "file://" + cursor.getString(column_index);
-        } finally {
-            if (cursor != null) {
-                cursor.close();
-            }
-        }
-    }
-
 }
